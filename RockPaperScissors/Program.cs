@@ -24,13 +24,15 @@ namespace RockPaperScissors {
         }
 	
 		public static int UserInputProcessing(int movesLength) {
-			string userInput = Console.ReadLine();
+			string? userInput = Console.ReadLine();
 			
-			if (userInput.Length == 0)
+			int a;
+	        bool flag = int.TryParse(userInput, out a);
+
+			if (userInput == null || (flag == false && userInput != "?"))
 				return -1;
 
-			int a;
-			if (int.TryParse(userInput, out a))
+			if (flag)
 				if (a > movesLength || a < 0)
 					return -2;
 			
