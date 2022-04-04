@@ -1,46 +1,44 @@
-﻿using System;
+using System;
 
 namespace RockPaperScissors {
 
     internal class Program {
 
-        static void Main(string[] args) {
+	static void Main(string[] args) {
 
-            Validate(args);
+		Validate(args);
 
-            StartGame(args);
+		StartGame(args);
 
-        }
+	}
 
-        public static void PrintMenu(string[] moves, string HMAC)
-
-        {
-            Console.WriteLine($"HMAC:\n{HMAC}");
-            Console.WriteLine("Available moves:");
-            for (int i = 0; i < moves.Length; i++)
-                Console.WriteLine($"{i + 1} - {moves[i]}");
-            Console.WriteLine("0 - exit\n? - help");
-            Console.Write("Enter your move: ");
+        public static void PrintMenu(string[] moves, string HMAC) {
+		Console.WriteLine($"HMAC:\n{HMAC}");
+		Console.WriteLine("Available moves:");
+		for (int i = 0; i < moves.Length; i++)
+		Console.WriteLine($"{i + 1} - {moves[i]}");
+		Console.WriteLine("0 - exit\n? - help");
+		Console.Write("Enter your move: ");
         }
 	
-		public static int UserInputProcessing(int movesLength) {
-			string? userInput = Console.ReadLine();
-			
-			int a;
-	        bool flag = int.TryParse(userInput, out a);
+	public static int UserInputProcessing(int movesLength) {
+		string? userInput = Console.ReadLine();
 
-			if (userInput == null || (flag == false && userInput != "?"))
-				return -1;
+		int a;
+		bool flag = int.TryParse(userInput, out a);
 
-			if (flag)
-				if (a > movesLength || a < 0)
-					return -2;
-			
-			if (userInput == "?")
-				return -999;
-			
-			return int.Parse(userInput);
-		}
+		if (userInput == null || (flag == false && userInput != "?"))
+			return -1;
+
+		if (flag)
+			if (a > movesLength || a < 0)
+				return -2;
+
+		if (userInput == "?")
+			return -999;
+
+		return int.Parse(userInput);
+	}
 
         public static void StartGame(string[] moves) {
 
