@@ -29,10 +29,9 @@ namespace RockPaperScissors {
         internal static int[] GetBeatList(int movesSize, int current) {
 
             int[] result = new int[movesSize / 2];
-
             int counter = 0;
-            while (counter < movesSize / 2) {
-                
+
+            while (counter < movesSize / 2) {     
                 if (current - 1 - counter < 0)
                     result[counter] = movesSize + current - counter;
                 else

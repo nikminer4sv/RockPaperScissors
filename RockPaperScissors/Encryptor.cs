@@ -6,21 +6,14 @@ namespace RockPaperScissors {
     internal static class Encryptor {
 
         internal static string GenerateRandomKey() {
-
+	    byte[] byteArray = new byte[32];
             RandomNumberGenerator generator = RandomNumberGenerator.Create();
-            byte[] byteArray = new byte[32];
-
             generator.GetBytes(byteArray);
-            string key = BitConverter.ToString(byteArray, 0).Replace("-", "");
-
-            return key;
-
+            return BitConverter.ToString(byteArray, 0).Replace("-", "");
         }
 
         internal static string GenerateHMAC(string text, string key) {
-
             var encoding = new ASCIIEncoding();
-
             var textBytes = encoding.GetBytes(text);
             var keyBytes = encoding.GetBytes(key);
 
@@ -30,7 +23,6 @@ namespace RockPaperScissors {
                 hashBytes = hash.ComputeHash(textBytes);
 
             return BitConverter.ToString(hashBytes).Replace("-", "");
-
         }
 
     }

@@ -13,6 +13,7 @@ namespace RockPaperScissors {
         }
 
         public static void PrintMenu(string[] moves, string HMAC)
+
         {
             Console.WriteLine($"HMAC:\n{HMAC}");
             Console.WriteLine("Available moves:");
@@ -21,42 +22,45 @@ namespace RockPaperScissors {
             Console.WriteLine("0 - exit\n? - help");
             Console.Write("Enter your move: ");
         }
+	
+		public static int UserInputProcessing(int movesLength) {
+			string userInput = Console.ReadLine();
+			
+			if (userInput.Length == 0)
+				return -1;
+
+			int a;
+			if (int.TryParse(userInput, out a))
+				if (a > movesLength || a < 0)
+					return -2;
+			
+			if (userInput == "?")
+				return -999;
+			
+			return int.Parse(userInput);
+		}
 
         public static void StartGame(string[] moves) {
 
             int computerChoice = new Random().Next(0, moves.Length);
-
             string key = Encryptor.GenerateRandomKey();
             string HMAC = Encryptor.GenerateHMAC(moves[computerChoice], key);
 
             PrintMenu(moves, HMAC);
-
-            string userChoiceStr = Console.ReadLine();
-            int userChoice = 0;
-            if (userChoiceStr.Length == 1) {
-                
-                if (userChoiceStr == "?") {
-                    
-                    HelpTable table = new HelpTable(moves);
-                    Console.WriteLine(table.ToString());
-                    Environment.Exit(0);
-
-                } else if (char.IsNumber(userChoiceStr[0])) {
-
-                    if (int.Parse(userChoiceStr) >= 0 && int.Parse(userChoiceStr) <= moves.Length) {
-
-                        if (int.Parse(userChoiceStr) == 0) {
-                            Environment.Exit(0);
-                        } else {
-                            userChoice = int.Parse(userChoiceStr);
-                        }
-                        
-                    }
-
-                }
-
-            }
-
+			
+			int userChoice;
+			do {
+				userChoice = UserInputProcessing(moves.Length);
+				if (userChoice == -1 || userChoice == -3)
+					Console.WriteLine("Wrong input!");
+				else if (userChoice == -2)
+					Console.WriteLine("Option with this number does not exist!");
+				else if (userChoice == -999)
+					HelpTable.Print(moves);	
+			} while(userChoice < 0);
+			
+			if (userChoice == 0)
+				Environment.Exit(0);
 
             Console.WriteLine($"Your move: {moves[userChoice - 1]}");
             Console.WriteLine($"Computer move: {moves[computerChoice]}");
@@ -71,7 +75,6 @@ namespace RockPaperScissors {
                 Console.WriteLine("Dead heat...");
                 
             Console.WriteLine($"HMAC key:\n{key}");
-            
 
         }
 

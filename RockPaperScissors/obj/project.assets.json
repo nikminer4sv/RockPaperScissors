@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/nikminer4sv/Documents/RPS/RockPaperScissors/RockPaperScissors/RockPaperScissors.csproj",
+      "projectUniqueName": "/Users/nikminer4sv/Documents/GitHub/RockPaperScissors/RockPaperScissors/RockPaperScissors.csproj",
       "projectName": "RockPaperScissors",
-      "projectPath": "/Users/nikminer4sv/Documents/RPS/RockPaperScissors/RockPaperScissors/RockPaperScissors.csproj",
+      "projectPath": "/Users/nikminer4sv/Documents/GitHub/RockPaperScissors/RockPaperScissors/RockPaperScissors.csproj",
       "packagesPath": "/Users/nikminer4sv/.nuget/packages/",
-      "outputPath": "/Users/nikminer4sv/Documents/RPS/RockPaperScissors/RockPaperScissors/obj/",
+      "outputPath": "/Users/nikminer4sv/Documents/GitHub/RockPaperScissors/RockPaperScissors/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/nikminer4sv/.nuget/NuGet/NuGet.Config"
